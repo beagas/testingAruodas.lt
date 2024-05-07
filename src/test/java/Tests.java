@@ -70,16 +70,16 @@ public class Tests {
     @BeforeTest
     public void SetupWebDriver() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
+//        options.addArguments("--start-maximized");
         _globalDriver = new ChromeDriver();
-        _globalDriver.get("https://m.aruodas.lt/");
+        _globalDriver.get("https://www.aruodas.lt/");
         _globalDriver.manage().window().maximize();
     }
 
     @BeforeTest
     public void SetupWebDriverFull() {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
+//        options.addArguments("--start-maximized");
         _globalDriverFull = new ChromeDriver();
         _globalDriverFull.get("https://www.aruodas.lt/");
         _globalDriverFull.manage().window().maximize();
@@ -130,11 +130,15 @@ public class Tests {
 
     @Test// skelbimo patalpinimas
     public void testTC0103() {
-        _globalDriver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        _globalDriver.findElement(By.id("onetrust-accept-btn-handler")).click();//išjungiami cookies
-        _globalDriver.findElement(By.xpath("//html/body/div[1]/div/div[1]/div[1]/ul/li[1]/a")).click();//pasirenkama įdėti skelbimą
-        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/ul[1]/li[2]/a/span[2]")).click();//įkelti namo skelbimą
-        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/ul[2]/li[1]/a/span[2]")).click();//pardavimui
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        _globalDriver.findElement(By.id("onetrust-reject-all-handler")).click();//išjungiami cookies
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[3]/div/div/a")).click();//pasirenkama įdėti skelbimą
+        _globalDriver.findElement(By.xpath("/html/body/div[1]/div[2]/ul/li[2]/ul/li[2]/span")).click();//įkelti namo skelbimą
+        _globalDriver.findElement(By.xpath("//*[@id=\"dealType\"]/ul/li[1]")).click();//pardavimui
         _globalDriver.findElement(By.id("regionTitle")).click();//savivaldybės pasirinkimas
         _globalDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div[3]/div[6]/div/ul/li[2]")).click();//pasirenkamas Kaunas
@@ -196,11 +200,6 @@ public class Tests {
         _globalDriverFull.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
         _globalDriverFull.findElement(By.id("address")).sendKeys("Aušros gatvė");
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         _globalDriverFull.findElement(By.id("address")).sendKeys((Keys.DOWN));
         try {
             TimeUnit.SECONDS.sleep(1);
