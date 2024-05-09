@@ -154,7 +154,7 @@ public class Tests {
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[1]/div[4]/span")).click();//išskleidžiamos gatvės
         _globalDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/div[3]/div[9]/div/ul/li[4]")).click();//pasirenkama Baranausko gatvė
-        _globalDriver.findElement(By.id("regionTitle")).sendKeys("420");//įvedamas namo numeris
+        _globalDriver.findElement(By.id("regionTitle")).sendKeys("420");//įvedamas namo numeriss
         _globalDriver.findElement(By.id("FAreaOverAllValue")).sendKeys("420");//įvedamas namo plotas
         _globalDriver.findElement(By.xpath("/html/body/div[1]/div[3]/div[1]/form/div[1]/div[3]/div[2]/div/div/div/div[2]/div[2]")).click();//aukštų skaičius
         _globalDriver.findElement(By.id("FAreaLotValue")).sendKeys("6");//įvedamas sklypo plotas
